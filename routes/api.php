@@ -54,3 +54,4 @@ Route::get('/OrderListByUser/{mobile}', [ProductOrderController::class, 'OrderLi
 
 Route::post('/addFav/{code}/{mobile}', [FavouriteController::class, 'addFav']);
 Route::get('/favList/{mobile}', [FavouriteController::class, 'favList']);
+Route::get('/removeFavItem/{mobile}/{code}', [FavouriteController::class, 'removeFavItem']);

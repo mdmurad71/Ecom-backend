@@ -32,4 +32,11 @@ class FavouriteController extends Controller
         $result = Favourite::where('mobile', $mobile)->orderBy('id', 'desc')->get();
         return response()->json($result);
     }
+
+
+    public function removeFavItem($code, $mobile)
+    {
+        $dataDelete = Favourite::where('product_code', $code)->where('mobile', $mobile)->delete();
+        return $dataDelete;
+    }
 }
