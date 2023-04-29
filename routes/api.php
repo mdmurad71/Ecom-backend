@@ -40,6 +40,9 @@ Route::get('/SendSiteInfo', [SiteInfoController::class, 'GetSiteInfoDetails']);
 
 Route::get('/ProductShortListByRemark/{remark}', [ProductListController::class, 'productListByRemark']);
 Route::get('/ProductDetailsByCode/{code}', [ProductDetailsController::class, 'productDetails']);
+Route::get('/ProductListByCategory/{category}', [ProductListController::class, 'ProductListByCategory']);
+Route::get('/ProductListBySubCategory/{category}/{subcategory}', [ProductListController::class, 'ProductListBySubCategory']);
+
 
 Route::post('/addToCart', [ProductCartController::class, 'addToCart']);
 Route::get('/CartCount/{mobile}', [ProductCartController::class, 'CartCount']);

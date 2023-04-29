@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryLevel2;
 use App\Models\CategoryModel;
 use App\Models\ProductListModel;
 use App\Models\SubCategoryModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProductListController extends Controller
@@ -122,31 +124,42 @@ class ProductListController extends Controller
         return $result;
     }
 
-    function ProductListDataEdit(Request $request)
-    {
-        $editID = $request->input('editID');
-        $title = $request->input('title');
-        $price = $request->input('price');
-        $special_price = $request->input('special_price');
-        $remark = $request->input('remark');
-        $star = $request->input('star');
-        $stock = $request->input('stock');
-        $result = ProductListModel::where('id', $editID)->update([
-            'title' => $title,
-            'price' => $price,
-            'special_price' => $special_price,
-            'remark' => $remark,
-            'star' => $star,
-            'stock' => $stock
-        ]);
-        return $result;
-    }
-
+    // function ProductListDataEdit(Request $request)
+    // {
+    //     $editID = $request->input('editID');
+    //     $title = $request->input('title');
+    //     $price = $request->input('price');
+    //     $special_price = $request->input('special_price');
+    //     $remark = $request->input('remark');
+    //     $star = $request->input('star');
+    //     $stock = $request->input('stock');
+    //     $result = ProductListModel::where('id', $editID)->update([
+    //         'title' => $title,
+    //         'price' => $price,
+    //         'special_price' => $special_price,
+    //         'remark' => $remark,
+    //         'star' => $star,
+    //         'stock' => $stock
+    //     ]);
+    //     return $result;
+    // }
 
     function productListByRemark(Request $request)
     {
         $remark = $request->remark;
         $productList = ProductListModel::Where('remark', $remark)->get();
         return $productList;
+    }
+
+    function ProductListByCategory($category)
+    {
+        $result = DB::table('product_list')->where('category', $category)->get();
+        return $result;
+    }
+
+    function ProductListBySubCategory($category, $subcategory)
+    {
+        $result = DB::table('product_list')->where('category', $category)->where('subcategory', $subcategory)->get();
+        return $result;
     }
 }

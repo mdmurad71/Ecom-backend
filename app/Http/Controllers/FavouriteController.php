@@ -39,4 +39,9 @@ class FavouriteController extends Controller
         $dataDelete = Favourite::where('product_code', $code)->where('mobile', $mobile)->delete();
         return $dataDelete;
     }
+
+    function productList()
+    {
+        return "hello";
+    }
 }
